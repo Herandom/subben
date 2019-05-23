@@ -59,9 +59,9 @@ e=ett(1)*ch+ett(2);
 figure(2);
 semilogy(e,databis(:,2))
 xlabel('keV')
-ylabel('Counts/ hour')
+ylabel('Counts')
 figure(3)
 plot(e,databis(:,2))
 
 xlabel('keV')
-ylabel('Counts/ hour')
+ylabel('Counts')

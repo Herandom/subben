@@ -3,8 +3,9 @@ datacesiuminput=load('137cs_117h.txt');
 z=-56;
 datacesiumperhour=[datacesiuminput(:,1) datacesiuminput(:,2)./117] %perhour
 datacesium2=datacesiumperhour(:,2)-databackperhour2;
-datacesium=[datacesiuminput(:,1) datacesium2];
-
+mellanmatris=datacesium2>0;
+datacesium2=datacesium2.*mellanmatris;
+datacesium=[datacesiuminput(:,1) datacesium2];%kalibrerad
 
 %% okaldataback
 figure(23131)
@@ -36,9 +37,9 @@ ylabel('Counts/ hour')
 %index:48:326
 
 %%
-[slope1,offset1]=kuriefit(e,kuriedata,[61.89;457])%kuriefit(e,kuriedata,[69.68;456.6])
+[slope1,offset1]=kuriefit(e,kuriedata,[57.02;453.9])%kuriefit(e,kuriedata,[69.68;456.6])
 %%
-[slope2,offset2]=kuriefit(e,kuriedata,[689.5;992.2])%[696.1;1000])
+[slope2,offset2]=kuriefit(e,kuriedata,[699.6;996.9])%[696.1;1000])
 
 %%
 q1=-offset1/slope1
