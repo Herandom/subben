@@ -1,7 +1,7 @@
 %% K5
 clear
-
-data=load('data.txt');
+%data.txt är från labbet
+data=load('207bi_46_5h.txt');
 plot(data(:,1), data(:,2))
 E1 = 1.0323;
 E3 = 2.8020;

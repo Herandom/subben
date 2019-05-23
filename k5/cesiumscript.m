@@ -1,27 +1,44 @@
 %% labbscript
-datacesium=getk5_n1024;
+datacesiuminput=load('137cs_117h.txt');
 z=-56;
-%%
+datacesiumperhour=[datacesiuminput(:,1) datacesiuminput(:,2)./117] %perhour
+datacesium2=datacesiumperhour(:,2)-databackperhour2;
+datacesium=[datacesiuminput(:,1) datacesium2];
+
+
+%% okaldataback
 figure(23131)
 cesiumpeaks=[482 976 1048]%keV
-semilogy(datacesium(:,1),datacesium(:,2))
+plot(datacesiuminput(:,1),datacesiuminput(:,2))
 xlabel('Kanaler')
 ylabel('Counts')
 
 figure(898)
-semilogy(e,datacesium(:,2))
+semilogy(e,datacesiuminput(:,2))
 xlabel('keV')
 ylabel('Counts')
+
+%% kalibrerad
+figure(231312)
+cesiumpeaks=[482 976 1048]%keV
+plot(datacesium(:,1),datacesium(:,2))
+xlabel('Kanaler')
+ylabel('Counts/ hour')
+
+figure(8982)
+semilogy(e,datacesium(:,2))
+xlabel('keV')
+ylabel('Counts/ hour')
+
 %%
 [kuriedata]=kurieplot(e,datacesium,z); %56 antal protoner
 %69.68 456.6
 %index:48:326
 
 %%
-[slope1,offset1]=kuriefit(e,kuriedata,[69.68;456.6])
+[slope1,offset1]=kuriefit(e,kuriedata,[61.89;457])%kuriefit(e,kuriedata,[69.68;456.6])
 %%
-%%
-[slope2,offset2]=kuriefit(e,kuriedata,[696.1;1000])
+[slope2,offset2]=kuriefit(e,kuriedata,[689.5;992.2])%[696.1;1000])
 
 %%
 q1=-offset1/slope1
@@ -42,6 +59,7 @@ logthalva2=log10(tHalva2sec)
 
 %%
 logf1=logf(z,q1)
+
 logft1=logthalva1+logf1
 logf2=logf(z,q2)
 logft2=logthalva2+logf2
